@@ -144,7 +144,10 @@ static int tuple_compare_modified(const Tuple & a, const Tuple & b)
 {
     return tuple_compare_int(a, b, Tuple::FileModified);
 }
-
+static int tuple_compare_bitrate(const Tuple & a, const Tuple & b)
+{
+    return tuple_compare_int(a, b, Tuple::Bitrate);
+}
 
 static const Playlist::StringCompareFunc filename_comparisons[] = {
     filename_compare_path,     // path
@@ -163,7 +166,8 @@ static const Playlist::StringCompareFunc filename_comparisons[] = {
     nullptr,                   // catalog number
     nullptr,                   // disc number
     nullptr,                   // created
-    nullptr                    // modified
+    nullptr,                   // modified
+    nullptr                    // bitrate
 };
 
 static const Playlist::TupleCompareFunc tuple_comparisons[] = {
@@ -183,7 +187,8 @@ static const Playlist::TupleCompareFunc tuple_comparisons[] = {
     tuple_compare_catalog_number,
     tuple_compare_disc,
     tuple_compare_created,
-    tuple_compare_modified};
+    tuple_compare_modified,
+    tuple_compare_bitrate};
 
 static_assert(aud::n_elems(filename_comparisons) == Playlist::n_sort_types &&
                   aud::n_elems(tuple_comparisons) == Playlist::n_sort_types,

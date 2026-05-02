@@ -81,6 +81,7 @@ public:
         Disc,
         FileCreated,
         FileModified,
+        Bitrate,
         n_sort_types
     };
 
